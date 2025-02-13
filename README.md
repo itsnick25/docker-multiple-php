@@ -64,8 +64,8 @@
     
         # Set apache environment variables
         SetEnv OM_ENV development
-    </VirtualHost>
-  
+     </VirtualHost>
+
     
    - Move the code to folder: `www/html/` -> Example: `www/html/new-domain`
    - Run this command to re-build docker: `docker-compose up --build -d`
