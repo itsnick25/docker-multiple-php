@@ -1,0 +1,5 @@
+www/html/*
+logs/apache/*
+logs/php/php71/*
+logs/php/php74/*
+logs/php/php82/*
