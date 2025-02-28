@@ -9,6 +9,7 @@ services:
       - ./apache/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
       - ./apache/certs:/etc/apache2/ssl
       - ./logs/apache:/var/log/apache2
+      - ./www/html/local:/var/www/html/local
       - ./www/html/om2012:/var/www/html/om2012
       - ./www/html/sbg-desktop:/var/www/html/sbg-desktop
       - ./www/html/cms:/var/www/html/cms
@@ -19,7 +20,9 @@ services:
       - php82
     networks:
       custom_network:
-        ipv4_address: 125.157.1.101  # Static IP for Apache
+        ipv4_address: 192.168.100.4  # Static IP for Apache
+    extra_hosts:
+      - host.docker.internal:host-gateway
 
   php71:
     build: ./php/php71
@@ -27,9 +30,10 @@ services:
     volumes:
       - ./logs/php/php71:/var/log/php
       - ./php/php71/php.ini:/usr/local/etc/php/php.ini
+      - ./www/html/local:/var/www/html/local
     networks:
       custom_network:
-        ipv4_address: 125.157.1.102  # Static IP for PHP 7.1
+        ipv4_address: 192.168.100.5  # Static IP for PHP 7.1
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
@@ -41,9 +45,10 @@ services:
       - ./php/php74/php.ini:/usr/local/etc/php/php.ini
       - ./www/html/sbg-desktop:/var/www/html/sbg-desktop
       - ./www/html/om2012:/var/www/html/om2012
+      - ./www/html/local:/var/www/html/local
     networks:
       custom_network:
-        ipv4_address: 125.157.1.103  # Static IP for PHP 7.4
+        ipv4_address: 192.168.100.6  # Static IP for PHP 7.4
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
@@ -55,48 +60,15 @@ services:
       - ./php/php82/php.ini:/usr/local/etc/php/php.ini
       - ./www/html/cms:/var/www/html/cms
       - ./www/html/sbg-laravel:/var/www/html/sbg-laravel
+      - ./www/html/local:/var/www/html/local
     networks:
       custom_network:
-        ipv4_address: 125.157.1.104  # Static IP for PHP 8.2
+        ipv4_address: 192.168.100.9  # Static IP for PHP 8.2
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
-  memcached-service:
-    build:
-      context: ./memcached
-    container_name: php_memcached
-    ports:
-      - "11211:11211"
-    restart: "no"
-    command: memcached -u itsdev-memcache -vv
-    networks:
-      custom_network:
-        ipv4_address: 125.157.1.100  # Static IP for Memcached
-
-  mysql:
-    image: mysql:8
-    container_name: mysql8
-    restart: "no"
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: itsnick
-      MYSQL_USER: nick
-      MYSQL_PASSWORD: Nick@2025
-      MYSQL_ROOT_PASSWORD: 12312345
-    volumes:
-      - dbdata:/var/lib/mysql
-    networks:
-      custom_network:
-        ipv4_address: 125.157.1.115  # Fixed IP for MySQL Server
-
-volumes:
-  dbdata:
-    driver: local
-
+### remove custom_network: docker network rm custom_network
+### create a custom_network manually: docker network create --driver bridge --subnet 192.168.100.0/24 custom_network
 networks:
   custom_network:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 125.157.1.0/24  # Ensure this matches the IPs above
+    external: true

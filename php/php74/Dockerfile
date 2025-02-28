@@ -14,8 +14,12 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     pkg-config \
     libssl-dev \
+    zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Copy custom PHP-FPM configuration
+COPY php-fpm.conf /usr/local/etc/php-fpm.d/custom.conf
+    
 # Update PECL channel
 RUN pecl channel-update pecl.php.net
 

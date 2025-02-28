@@ -13,8 +13,12 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     pkg-config \
     libssl-dev \
+    zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Copy custom PHP-FPM configuration
+COPY php-fpm.conf /usr/local/etc/php-fpm.d/custom.conf
+    
 # Install GD extension
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd

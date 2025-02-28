@@ -10,8 +10,12 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     libfreetype6-dev \
     libicu-dev \
+    zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Copy custom PHP-FPM configuration
+COPY php-fpm.conf /usr/local/etc/php-fpm.d/custom.conf
+    
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd zip mysqli pdo_mysql intl
