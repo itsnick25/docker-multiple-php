@@ -5,6 +5,8 @@ RUN apt-get update && apt-get install -y \
     libapache2-mod-fcgid \
     curl \
     ca-certificates \
+    && update-ca-certificates \
+    && chmod 644 /etc/ssl/certs/ca-certificates.crt \
     && rm -rf /var/lib/apt/lists/*
 
 # Enable necessary Apache modules
