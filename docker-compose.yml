@@ -2,6 +2,8 @@ services:
   apache:
     build: ./apache
     container_name: apache_proxy
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
     ports:
       - "80:80"
       - "443:443"
@@ -27,6 +29,8 @@ services:
   php71:
     build: ./php/php71
     container_name: php71_fpm
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
     volumes:
       - ./logs/php/php71:/var/log/php
       - ./php/php71/php.ini:/usr/local/etc/php/php.ini
@@ -40,6 +44,8 @@ services:
   php74:
     build: ./php/php74
     container_name: php74_fpm
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
     volumes:
       - ./logs/php/php74:/var/log/php
       - ./php/php74/php.ini:/usr/local/etc/php/php.ini
@@ -55,6 +61,8 @@ services:
   php82:
     build: ./php/php82
     container_name: php82_fpm
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
     volumes:
       - ./logs/php/php82:/var/log/php
       - ./php/php82/php.ini:/usr/local/etc/php/php.ini
