@@ -3,6 +3,8 @@ FROM php:8.2-apache
 RUN apt-get update && apt-get install -y \
     apache2-utils \
     libapache2-mod-fcgid \
+    curl \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Enable necessary Apache modules
@@ -18,5 +20,7 @@ COPY certs/apache-selfsigned.key /etc/apache2/ssl/apache-selfsigned.key
 
 # Copy updated Virtual Host configuration
 COPY vhost.conf /etc/apache2/sites-enabled/000-default.conf
+
+EXPOSE 80 443
 
 CMD ["apachectl", "-D", "FOREGROUND"]
