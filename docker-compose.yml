@@ -2,6 +2,8 @@ services:
   apache:
     build: ./apache
     container_name: apache_proxy
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
     ports:
       - "80:80"
       - "443:443"
@@ -27,6 +29,8 @@ services:
   php71:
     build: ./php/php71
     container_name: php71_fpm
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
     volumes:
       - ./logs/php/php71:/var/log/php
       - ./php/php71/php.ini:/usr/local/etc/php/php.ini
@@ -40,6 +44,8 @@ services:
   php74:
     build: ./php/php74
     container_name: php74_fpm
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
     volumes:
       - ./logs/php/php74:/var/log/php
       - ./php/php74/php.ini:/usr/local/etc/php/php.ini
@@ -51,10 +57,53 @@ services:
         ipv4_address: 192.168.100.6  # Static IP for PHP 7.4
     extra_hosts:
       - "host.docker.internal:host-gateway"
+      - "www.smartbuyglasses.com:192.168.100.4"
+      - "www.visiondirect.com.au:192.168.100.4"
+      - "www.smartbuyglasses.ca:192.168.100.4"
+      - "www.smartbuyglasses.co.nz:192.168.100.4"
+      - "www.smartbuyglasses.jp:192.168.100.4"
+      - "www.smartbuyglasses.com.hk:192.168.100.4"
+      - "www.smartbuyglasses.com.tw:192.168.100.4"
+      - "www.smartbuyglasses.co.uk:192.168.100.4"
+      - "www.smartbuyglasses.de:192.168.100.4"
+      - "www.smartbuyglasses.nl:192.168.100.4"
+      - "www.smartbuyglasses.co.in:192.168.100.4"
+      - "www.smartbuyglasses.co.za:192.168.100.4"
+      - "www.smartbuyglasses.ie:192.168.100.4"
+      - "www.smartbuyglasses.se:192.168.100.4"
+      - "www.smartbuyglasses.com.sg:192.168.100.4"
+      - "es.smartbuyglasses.com:192.168.100.4"
+      - "en.smartbuyglasses.com.hk:192.168.100.4"
+      - "fr.smartbuyglasses.ca:192.168.100.4"
+      - "www.easylunettes.fr:192.168.100.4"
+      - "www.smartbuyglasses.ch:192.168.100.4"
+      - "www.smartbuyglasses.be:192.168.100.4"
+      - "www.smartbuyglasses.at:192.168.100.4"
+      - "fr.smartbuyglasses.be:192.168.100.4"
+      - "en.smartbuyglasses.ch:192.168.100.4"
+      - "fr.smartbuyglasses.ch:192.168.100.4"
+      - "en.smartbuyglasses.be:192.168.100.4"
+      - "www.oculosworld.com.br:192.168.100.4"
+      - "www.gafasworld.es:192.168.100.4"
+      - "www.smartbuyglasses.dk:192.168.100.4"
+      - "www.smartbuyglasses.it:192.168.100.4"
+      - "www.oculosworld.com.pt:192.168.100.4"
+      - "www.smartbuyglasses.fi:192.168.100.4"
+      - "www.lentesworld.com.mx:192.168.100.4"
+      - "www.gafasworld.com.co:192.168.100.4"
+      - "www.smartbuyglasses.no:192.168.100.4"
+      - "www.visiondirecta.cl:192.168.100.4"
+      - "www.optykaworld.pl:192.168.100.4"
+      - "www.smartbuyglasses.com.my:192.168.100.4"
+      - "www.smartbuyglasses.co.id:192.168.100.4"
+      - "www.smartbuyglasses.com.ar:192.168.100.4"
+      - "www.smartbuyglasses.ae:192.168.100.4"
 
   php82:
     build: ./php/php82
     container_name: php82_fpm
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
     volumes:
       - ./logs/php/php82:/var/log/php
       - ./php/php82/php.ini:/usr/local/etc/php/php.ini
@@ -66,6 +115,7 @@ services:
         ipv4_address: 192.168.100.9  # Static IP for PHP 8.2
     extra_hosts:
       - "host.docker.internal:host-gateway"
+      - "www.smartbuyglasses.la:192.168.100.4"
 
 ### remove custom_network: docker network rm custom_network
 ### create a custom_network manually: docker network create --driver bridge --subnet 192.168.100.0/24 custom_network
