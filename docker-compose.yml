@@ -13,7 +13,8 @@ services:
       - ./logs/apache:/var/log/apache2
       - ./www/html/local:/var/www/html/local
       - ./www/html/om2012:/var/www/html/om2012
-      - ./www/html/sbg-desktop:/var/www/html/sbg-desktop
+      - ./www/html/sbg-middlelayer:/var/www/html/sbg-desktop
+      - ./www/html/sbg-desktop:/var/www/html/sbg-desktop/sbg2012/sbg2012
       - ./www/html/cms:/var/www/html/cms
       - ./www/html/sbg-laravel:/var/www/html/sbg-laravel
     depends_on:
@@ -49,7 +50,8 @@ services:
     volumes:
       - ./logs/php/php74:/var/log/php
       - ./php/php74/php.ini:/usr/local/etc/php/php.ini
-      - ./www/html/sbg-desktop:/var/www/html/sbg-desktop
+      - ./www/html/sbg-middlelayer:/var/www/html/sbg-desktop
+      - ./www/html/sbg-desktop:/var/www/html/sbg-desktop/sbg2012/sbg2012
       - ./www/html/om2012:/var/www/html/om2012
       - ./www/html/local:/var/www/html/local
     networks:
