@@ -54,6 +54,7 @@ services:
       - ./www/html/sbg-desktop:/var/www/html/sbg-desktop/sbg2012/sbg2012
       - ./www/html/om2012:/var/www/html/om2012
       - ./www/html/local:/var/www/html/local
+      - ./www/html/sbg-laravel:/var/www/html/sbg-laravel
     networks:
       custom_network:
         ipv4_address: 192.168.100.6  # Static IP for PHP 7.4
@@ -100,6 +101,7 @@ services:
       - "www.smartbuyglasses.co.id:192.168.100.4"
       - "www.smartbuyglasses.com.ar:192.168.100.4"
       - "www.smartbuyglasses.ae:192.168.100.4"
+      - "omlocal.motionglobal.com:192.168.100.4"
 
   php82:
     build: ./php/php82
@@ -159,6 +161,7 @@ services:
       - "www.smartbuyglasses.com.ar:192.168.100.4"
       - "www.smartbuyglasses.ae:192.168.100.4"
       - "www.smartbuyglasses.la:192.168.100.4"
+      - "omlocal.motionglobal.com:192.168.100.4"
 
 ### remove custom_network: docker network rm custom_network
 ### create a custom_network manually: docker network create --driver bridge --subnet 192.168.100.0/24 custom_network
