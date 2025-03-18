@@ -67,6 +67,14 @@
      </VirtualHost>
 
     
-   - Move the code to folder: `www/html/` -> Example: `www/html/new-domain`
+   - Code structure: 
+      * CMS: /www/html/cms
+      * OM: /www/html/om2012
+      * SBG Zend: /www/html/sbg-desktop
+      * SBG Laravel: /www/html/sbg-laravel
+      * Middle Layer: /www/html/sbg-middlelayer
+      * Localhost: /www/html/local
+      
    - Run this command to re-build docker: `docker-compose up --build -d`
+   - Run this command to create a custom_network manually: `docker network create --driver bridge --subnet 192.168.100.0/24 custom_network`
    - Open new site `new.domain` on browser
