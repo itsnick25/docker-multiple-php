@@ -39,5 +39,8 @@ RUN docker-php-ext-install mysqli pdo_mysql zip gd intl
 # Copy Xdebug config
 COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 WORKDIR /var/www/html
 CMD ["php-fpm"]

@@ -26,5 +26,8 @@ RUN pecl install xdebug-2.9.8 && docker-php-ext-enable xdebug
 # Copy Xdebug config
 COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 WORKDIR /var/www/html
 CMD ["php-fpm"]
