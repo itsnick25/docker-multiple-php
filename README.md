@@ -1,6 +1,6 @@
 1. Build a Docker Container Image
    - Use this command to build: `docker-compose up -d`
-   - Use this command to re-build when have a update: `docker-compose up --build -d`
+   - Use this command to re-build when have an update: `docker-compose up --build -d`
    - Use this command to restart everything: `docker-compose down && docker-compose up -d`
    - Use this command to stop the docker: `docker-compose down`
      
