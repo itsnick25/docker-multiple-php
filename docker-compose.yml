@@ -162,7 +162,30 @@ services:
       - "www.smartbuyglasses.ae:192.168.100.4"
       - "www.smartbuyglasses.la:192.168.100.4"
       - "omlocal.motionglobal.com:192.168.100.4"
-
+    
+  memcached:
+    build:
+      context: ./memcached
+    container_name: memcached
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+    ports:
+      - "11211:11211"
+    restart: "no"
+    command: memcached -u itsdev-memcache -vv
+    networks:
+      custom_network:
+        ipv4_address: 192.168.100.11  # Static IP for Memcached
+        
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      custom_network:
+        ipv4_address: 192.168.100.10  # Optional static IP
+            
 ### remove custom_network: docker network rm custom_network
 ### create a custom_network manually: docker network create --driver bridge --subnet 192.168.100.0/24 custom_network
 networks:
