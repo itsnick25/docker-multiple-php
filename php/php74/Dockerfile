@@ -30,6 +30,9 @@ RUN pecl install xdebug-3.1.6 && docker-php-ext-enable xdebug
 RUN pecl install memcached \
     && docker-php-ext-enable memcached
 
+# Install Redis extension
+RUN pecl install redis && docker-php-ext-enable redis
+
 # Configure GD before installation
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 

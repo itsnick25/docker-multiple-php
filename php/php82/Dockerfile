@@ -29,6 +29,9 @@ RUN docker-php-ext-install zip intl mysqli pdo_mysql
 # Install Memcached extension
 RUN pecl install memcached && docker-php-ext-enable memcached
 
+# Install Redis extension
+RUN pecl install redis && docker-php-ext-enable redis
+
 # Install Xdebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 
