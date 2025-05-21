@@ -27,7 +27,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 RUN docker-php-ext-install zip intl mysqli pdo_mysql
 
 # Install Memcached extension
-RUN pecl install memcached && docker-php-ext-enable memcached
+RUN apt-get update && apt-get install -y libmemcached-dev zlib1g-dev && pecl install memcached && docker-php-ext-enable memcached
 
 # Install Redis extension
 RUN pecl install redis && docker-php-ext-enable redis

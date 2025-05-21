@@ -27,8 +27,7 @@ RUN pecl channel-update pecl.php.net
 RUN pecl install xdebug-3.1.6 && docker-php-ext-enable xdebug
 
 # Install Memcached (fix for missing dependencies)
-RUN pecl install memcached \
-    && docker-php-ext-enable memcached
+RUN pecl install memcached && docker-php-ext-enable memcached
 
 # Install Redis extension
 RUN pecl install redis && docker-php-ext-enable redis
